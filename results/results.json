@@ -1,0 +1,453 @@
+{
+ "bge-base-en-v1.5": {
+  "model": "bge-base-en-v1.5",
+  "slice_sizes": {
+   "All queries": 480,
+   "Named products and brands": 121,
+   "Numbers and sizes": 44,
+   "Short (1–2 words)": 132,
+   "Long (5+ words)": 80
+  },
+  "ndcg@10": {
+   "BM25 only": {
+    "All queries": 0.689,
+    "Named products and brands": 0.772,
+    "Numbers and sizes": 0.594,
+    "Short (1–2 words)": 0.759,
+    "Long (5+ words)": 0.651
+   },
+   "Vector only": {
+    "All queries": 0.712,
+    "Named products and brands": 0.79,
+    "Numbers and sizes": 0.671,
+    "Short (1–2 words)": 0.775,
+    "Long (5+ words)": 0.694
+   },
+   "RRF (k=60)": {
+    "All queries": 0.736,
+    "Named products and brands": 0.819,
+    "Numbers and sizes": 0.692,
+    "Short (1–2 words)": 0.788,
+    "Long (5+ words)": 0.711
+   },
+   "Late weighted sum, one α": {
+    "All queries": 0.734,
+    "Named products and brands": 0.817,
+    "Numbers and sizes": 0.695,
+    "Short (1–2 words)": 0.785,
+    "Long (5+ words)": 0.717
+   },
+   "Single-pass hybrid, one α": {
+    "All queries": 0.741,
+    "Named products and brands": 0.826,
+    "Numbers and sizes": 0.71,
+    "Short (1–2 words)": 0.79,
+    "Long (5+ words)": 0.718
+   },
+   "Single-pass, α per query type": {
+    "All queries": 0.741,
+    "Named products and brands": 0.826,
+    "Numbers and sizes": 0.708,
+    "Short (1–2 words)": 0.789,
+    "Long (5+ words)": 0.718
+   },
+   "Learned ranker on both legs": {
+    "All queries": 0.749,
+    "Named products and brands": 0.823,
+    "Numbers and sizes": 0.733,
+    "Short (1–2 words)": 0.789,
+    "Long (5+ words)": 0.7
+   }
+  },
+  "hurt_vs_bm25(>0.1)": {
+   "BM25 only": 0,
+   "Vector only": 79,
+   "RRF (k=60)": 33,
+   "Late weighted sum, one α": 38,
+   "Single-pass hybrid, one α": 36,
+   "Single-pass, α per query type": 37,
+   "Learned ranker on both legs": 54
+  },
+  "hurt_vs_vector(>0.1)": {
+   "BM25 only": 110,
+   "Vector only": 0,
+   "RRF (k=60)": 46,
+   "Late weighted sum, one α": 30,
+   "Single-pass hybrid, one α": 27,
+   "Single-pass, α per query type": 26,
+   "Learned ranker on both legs": 48
+  },
+  "exact_recall@100": {
+   "BM25": 0.711,
+   "Vector": 0.703,
+   "Union": 0.833
+  },
+  "top100_overlap": 0.444,
+  "alphas": {
+   "late": {
+    "all": [
+     0.55,
+     0.55,
+     0.6,
+     0.55,
+     0.55
+    ]
+   },
+   "single": {
+    "all": [
+     0.7,
+     0.7,
+     0.7,
+     0.7,
+     0.75
+    ]
+   },
+   "by_type": {
+    "named": [
+     0.7,
+     0.65,
+     0.7,
+     0.7,
+     0.7
+    ],
+    "long": [
+     0.75,
+     0.85,
+     0.85,
+     0.85,
+     0.8
+    ],
+    "other": [
+     0.7,
+     0.7,
+     0.7,
+     0.7,
+     0.7
+    ]
+   }
+  },
+  "trap": {
+   "RRF (k=60)": {
+    "queries": 239,
+    "still #1": 117,
+    "out of top 3": 86,
+    "out of top 10": 32
+   },
+   "Single-pass hybrid": {
+    "queries": 239,
+    "still #1": 100,
+    "out of top 3": 89,
+    "out of top 10": 36
+   }
+  },
+  "helped_hurt_vs_vector": {
+   "BM25 only": [
+    79,
+    110
+   ],
+   "Vector only": [
+    0,
+    0
+   ],
+   "RRF (k=60)": [
+    79,
+    46
+   ],
+   "Late weighted sum, one α": [
+    70,
+    30
+   ],
+   "Single-pass hybrid, one α": [
+    78,
+    27
+   ],
+   "Single-pass, α per query type": [
+    83,
+    26
+   ],
+   "Learned ranker on both legs": [
+    106,
+    48
+   ]
+  },
+  "helped_hurt_vs_bm25": {
+   "BM25 only": [
+    0,
+    0
+   ],
+   "Vector only": [
+    110,
+    79
+   ],
+   "RRF (k=60)": [
+    118,
+    33
+   ],
+   "Late weighted sum, one α": [
+    120,
+    38
+   ],
+   "Single-pass hybrid, one α": [
+    123,
+    36
+   ],
+   "Single-pass, α per query type": [
+    123,
+    37
+   ],
+   "Learned ranker on both legs": [
+    131,
+    54
+   ]
+  },
+  "regner": {
+   "query": "regner power loom red",
+   "bm25": [
+    [
+     "regner power loom red/light gray rug",
+     2
+    ],
+    [
+     "regner power loom yellow/black rug",
+     1
+    ],
+    [
+     "stevens power loom red rug",
+     1
+    ]
+   ],
+   "vector": [
+    [
+     "leist power loom red/beige rug",
+     1
+    ],
+    [
+     "power loom red area rug",
+     1
+    ],
+    [
+     "lindahl power loom red/gray rug",
+     1
+    ]
+   ],
+   "rrf": [
+    [
+     "leist power loom red/beige rug",
+     1
+    ],
+    [
+     "stevens power loom red rug",
+     1
+    ],
+    [
+     "lindahl power loom red/gray rug",
+     1
+    ]
+   ],
+   "exact_rrf_rank": 56,
+   "exact_vector_rank": 114
+  }
+ },
+ "all-MiniLM-L6-v2": {
+  "model": "all-MiniLM-L6-v2",
+  "slice_sizes": {
+   "All queries": 480,
+   "Named products and brands": 121,
+   "Numbers and sizes": 44,
+   "Short (1–2 words)": 132,
+   "Long (5+ words)": 80
+  },
+  "ndcg@10": {
+   "BM25 only": {
+    "All queries": 0.689,
+    "Named products and brands": 0.772,
+    "Numbers and sizes": 0.594,
+    "Short (1–2 words)": 0.759,
+    "Long (5+ words)": 0.651
+   },
+   "Vector only": {
+    "All queries": 0.667,
+    "Named products and brands": 0.742,
+    "Numbers and sizes": 0.573,
+    "Short (1–2 words)": 0.738,
+    "Long (5+ words)": 0.619
+   },
+   "RRF (k=60)": {
+    "All queries": 0.725,
+    "Named products and brands": 0.816,
+    "Numbers and sizes": 0.647,
+    "Short (1–2 words)": 0.787,
+    "Long (5+ words)": 0.692
+   },
+   "Late weighted sum, one α": {
+    "All queries": 0.719,
+    "Named products and brands": 0.804,
+    "Numbers and sizes": 0.648,
+    "Short (1–2 words)": 0.784,
+    "Long (5+ words)": 0.68
+   },
+   "Single-pass hybrid, one α": {
+    "All queries": 0.731,
+    "Named products and brands": 0.819,
+    "Numbers and sizes": 0.662,
+    "Short (1–2 words)": 0.789,
+    "Long (5+ words)": 0.693
+   },
+   "Single-pass, α per query type": {
+    "All queries": 0.731,
+    "Named products and brands": 0.82,
+    "Numbers and sizes": 0.655,
+    "Short (1–2 words)": 0.786,
+    "Long (5+ words)": 0.696
+   },
+   "Learned ranker on both legs": {
+    "All queries": 0.742,
+    "Named products and brands": 0.819,
+    "Numbers and sizes": 0.7,
+    "Short (1–2 words)": 0.776,
+    "Long (5+ words)": 0.693
+   }
+  },
+  "hurt_vs_bm25(>0.1)": {
+   "BM25 only": 0,
+   "Vector only": 128,
+   "RRF (k=60)": 52,
+   "Late weighted sum, one α": 32,
+   "Single-pass hybrid, one α": 40,
+   "Single-pass, α per query type": 40,
+   "Learned ranker on both legs": 48
+  },
+  "hurt_vs_vector(>0.1)": {
+   "BM25 only": 89,
+   "Vector only": 0,
+   "RRF (k=60)": 34,
+   "Late weighted sum, one α": 43,
+   "Single-pass hybrid, one α": 36,
+   "Single-pass, α per query type": 31,
+   "Learned ranker on both legs": 48
+  },
+  "exact_recall@100": {
+   "BM25": 0.711,
+   "Vector": 0.644,
+   "Union": 0.818
+  },
+  "top100_overlap": 0.404,
+  "alphas": {
+   "late": {
+    "all": [
+     0.45,
+     0.45,
+     0.45,
+     0.45,
+     0.4
+    ]
+   },
+   "single": {
+    "all": [
+     0.6,
+     0.65,
+     0.6,
+     0.6,
+     0.6
+    ]
+   },
+   "by_type": {
+    "named": [
+     0.7,
+     0.7,
+     0.65,
+     0.7,
+     0.7
+    ],
+    "long": [
+     0.45,
+     0.4,
+     0.45,
+     0.45,
+     0.45
+    ],
+    "other": [
+     0.6,
+     0.65,
+     0.65,
+     0.6,
+     0.55
+    ]
+   }
+  },
+  "trap": {
+   "RRF (k=60)": {
+    "queries": 239,
+    "still #1": 95,
+    "out of top 3": 113,
+    "out of top 10": 49
+   },
+   "Single-pass hybrid": {
+    "queries": 239,
+    "still #1": 95,
+    "out of top 3": 90,
+    "out of top 10": 37
+   }
+  },
+  "helped_hurt_vs_vector": {
+   "BM25 only": [
+    128,
+    89
+   ],
+   "Vector only": [
+    0,
+    0
+   ],
+   "RRF (k=60)": [
+    137,
+    34
+   ],
+   "Late weighted sum, one α": [
+    145,
+    43
+   ],
+   "Single-pass hybrid, one α": [
+    145,
+    36
+   ],
+   "Single-pass, α per query type": [
+    140,
+    31
+   ],
+   "Learned ranker on both legs": [
+    168,
+    48
+   ]
+  },
+  "helped_hurt_vs_bm25": {
+   "BM25 only": [
+    0,
+    0
+   ],
+   "Vector only": [
+    89,
+    128
+   ],
+   "RRF (k=60)": [
+    115,
+    52
+   ],
+   "Late weighted sum, one α": [
+    88,
+    32
+   ],
+   "Single-pass hybrid, one α": [
+    110,
+    40
+   ],
+   "Single-pass, α per query type": [
+    105,
+    40
+   ],
+   "Learned ranker on both legs": [
+    131,
+    48
+   ]
+  }
+ }
+}
